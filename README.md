@@ -76,6 +76,77 @@ button{touch-action:manipulation}
 }
 @media(hover:none){.btn:hover,.animal-card:hover{transform:none}}
 
+
+
+
+/* CICERO MENU – desktop spacing and stronger typography */
+@media (min-width: 681px) {
+  .topbar {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    column-gap: clamp(15px, 1.55vw, 25px) !important;
+    row-gap: 14px !important;
+    padding: 14px 24px !important;
+  }
+  .topbar > button.nav {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-height: 38px !important;
+    margin: 0 !important;
+    padding: 7px 0 !important;
+    color: #087d8b !important;
+    font-family: Arial, 'Trebuchet MS', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    -webkit-text-stroke: .28px currentColor;
+    text-shadow: .35px 0 currentColor, -.2px 0 currentColor;
+    letter-spacing: .12px !important;
+    white-space: nowrap !important;
+  }
+  /* Separate the four navigation groups, while keeping each item distinct. */
+  .topbar > button.nav:nth-child(1),
+  .topbar > button.nav:nth-child(5),
+  .topbar > button.nav:nth-child(7) {
+    margin-right: clamp(12px, 1.5vw, 24px) !important;
+  }
+}
+/* Stronger text on the left navigation and reward shop headings */
+aside > .sidebtn {
+  font-family: Arial, 'Trebuchet MS', sans-serif !important;
+  font-weight: 900 !important;
+  -webkit-text-stroke: .25px currentColor;
+  text-shadow: .3px 0 currentColor, -.2px 0 currentColor;
+}
+#view .panel h2,
+#view .panel h3,
+#view .panel .badge-count,
+#view .panel .mini h3,
+#view .panel .btn {
+  font-weight: 900 !important;
+  -webkit-text-stroke: .2px currentColor;
+}
+@media (max-width: 680px) {
+  .topbar {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px 14px !important;
+    padding: 12px !important;
+  }
+  .topbar > button.nav {
+    width: 100% !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 10px 7px !important;
+    font-family: Arial, 'Trebuchet MS', sans-serif !important;
+    font-weight: 900 !important;
+    -webkit-text-stroke: .2px currentColor;
+    text-shadow: .3px 0 currentColor, -.2px 0 currentColor;
+  }
+}
+
 </style></head><body><div class="app"><aside><div class="logo" data-page="Luyện tập" role="button" style="cursor:pointer">Cicero&amp;Co</div><button class="sidebtn" data-page="Bảng xếp hạng">Bảng xếp hạng</button><button class="sidebtn" data-page="Đổi quà">Đổi quà</button><button class="sidebtn" data-page="Trợ lý ảo">Trợ lý ảo</button><button class="sidebtn" data-page="Nhân vật">Nhân vật</button></aside><main><nav class="topbar"><button class="nav" data-page="Tài khoản">Đăng ký / Đăng nhập</button><button class="nav" data-page="Cá nhân">Cá nhân</button><button class="nav" data-page="Kiến thức">Kiến thức</button><button class="nav active" data-page="Luyện tập">Luyện tập</button><button class="nav" data-page="Đánh giá">Đánh giá</button><button class="nav" data-page="Bạn bè">Bạn bè</button><button class="nav" data-page="Thi đấu">Thi đấu</button><button class="nav" data-page="Góp ý">💌 Góp ý</button></nav><div id="view"></div></main></div>
 <script>
 const skills=[
