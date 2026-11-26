@@ -368,7 +368,18 @@ body { overflow-x:hidden; }
 
  
 
-</style></head><body><div class="app"><aside><div class="logo" data-page="Luyện tập" role="button" style="cursor:pointer">Cicero&amp;Co</div><button class="sidebtn" data-page="Bảng xếp hạng">Bảng xếp hạng</button><button class="sidebtn" data-page="Đổi quà">Đổi quà</button><button class="sidebtn" data-page="Trợ lý ảo">Trợ lý ảo</button><button class="sidebtn" data-page="Nhân vật">Nhân vật</button></aside><main><nav class="topbar"><button class="nav" data-page="Tài khoản">Đăng ký / Đăng nhập</button><button class="nav" data-page="Cá nhân">Cá nhân</button><button class="nav" data-page="Kiến thức">Kiến thức</button><button class="nav active" data-page="Luyện tập">Luyện tập</button><button class="nav" data-page="Đánh giá">Đánh giá</button><button class="nav" data-page="Bạn bè">Bạn bè</button><button class="nav" data-page="Thi đấu">Thi đấu</button><button class="nav" data-page="Góp ý">💌 Góp ý</button></nav><div id="view"></div></main></div>
+
+/* Mobile-only hamburger navigation: desktop layout remains unchanged */
+.mobile-menu-head{display:none}
+@media(max-width:680px){
+ .app > aside{display:flex!important;position:relative!important;top:auto!important;z-index:80!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;overflow:visible!important;white-space:normal!important;width:100%!important;padding:10px 12px!important;gap:8px!important;background:#d9fff0ed!important;border-bottom:1px solid #bfe7e5!important}
+ .mobile-menu-head{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;width:100%!important}
+ .mobile-menu-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:44px!important;height:42px!important;border:1px solid #bce8d6!important;border-radius:13px!important;background:#e7f7ef!important;color:#087d8b!important;font-size:24px!important;font-weight:900!important;box-shadow:0 4px 10px #4aa98520!important;cursor:pointer}
+ .mobile-menu-head .logo{margin:0!important;font-size:18px!important}
+ .app > aside .sidebtn{display:none!important;width:100%!important;min-height:46px!important;border-radius:14px!important;justify-content:flex-start!important;text-align:left!important;padding:10px 14px!important;font-size:14px!important;background:#fff2bd!important;color:#5963b5!important;box-shadow:-4px 0 0 #f7d8e7!important}
+ .app > aside.menu-open .sidebtn{display:flex!important}
+}
+</style></head><body><div class="app"><aside><div class="mobile-menu-head"><button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button><div class="logo" data-page="Luyện tập" role="button" style="cursor:pointer">Cicero&amp;Co</div></div><button class="sidebtn" data-page="Bảng xếp hạng">🏆 Bảng xếp hạng</button><button class="sidebtn" data-page="Đổi quà">🎁 Đổi quà</button><button class="sidebtn" data-page="Trợ lý ảo">🤖 Trợ lý ảo</button><button class="sidebtn" data-page="Nhân vật">👤 Nhân vật</button></aside><main><nav class="topbar"><button class="nav" data-page="Tài khoản">Đăng ký / Đăng nhập</button><button class="nav" data-page="Cá nhân">Cá nhân</button><button class="nav" data-page="Kiến thức">Kiến thức</button><button class="nav active" data-page="Luyện tập">Luyện tập</button><button class="nav" data-page="Đánh giá">Đánh giá</button><button class="nav" data-page="Bạn bè">Bạn bè</button><button class="nav" data-page="Thi đấu">Thi đấu</button><button class="nav" data-page="Góp ý">💌 Góp ý</button></nav><div id="view"></div></main></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1081,6 +1092,16 @@ function page(name){
 }
 
  
+
+
+// Mobile hamburger menu behavior
+const mobileMenuAside=document.querySelector('.app > aside');
+const mobileMenuToggle=document.querySelector('.mobile-menu-toggle');
+if(mobileMenuAside&&mobileMenuToggle){
+ mobileMenuToggle.addEventListener('click',()=>{const opened=mobileMenuAside.classList.toggle('menu-open');mobileMenuToggle.setAttribute('aria-expanded',String(opened));mobileMenuToggle.textContent=opened?'✕':'☰';mobileMenuToggle.setAttribute('aria-label',opened?'Đóng menu':'Mở menu');});
+ mobileMenuAside.querySelectorAll('.sidebtn').forEach(btn=>btn.addEventListener('click',()=>{mobileMenuAside.classList.remove('menu-open');mobileMenuToggle.setAttribute('aria-expanded','false');mobileMenuToggle.textContent='☰';mobileMenuToggle.setAttribute('aria-label','Mở menu');}));
+ document.addEventListener('click',e=>{if(window.innerWidth<=680&&!mobileMenuAside.contains(e.target)){mobileMenuAside.classList.remove('menu-open');mobileMenuToggle.setAttribute('aria-expanded','false');mobileMenuToggle.textContent='☰';mobileMenuToggle.setAttribute('aria-label','Mở menu');}});
+}
 
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-page]').forEach(x=>x.classList.remove('active'));b.classList.add('active');page(b.dataset.page)}));home();
 
